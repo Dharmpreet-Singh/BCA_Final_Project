@@ -1,0 +1,60 @@
+﻿@model ProjectDP.Models.Product
+
+@{
+    ViewBag.Title = "Dtl_Product";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="disp">
+    <h2>Detail Product</h2>
+
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.catId)*@
+                Category
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.c_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.subCatId)*@
+                Subcategory
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sub_Category.sc_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.p_name)*@
+                Product Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.p_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.p_img)*@
+                Product Image
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.p_img)*@
+                <img src="@Model.p_img" alt=Alternate Text" width="100px" />
+            </dd>
+
+
+        </dl>
+    </div>
+    <p class="redirect">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.p_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

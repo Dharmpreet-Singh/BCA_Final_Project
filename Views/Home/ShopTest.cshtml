@@ -1,0 +1,52 @@
+﻿@model ProjectDP.Models.ShopProductModel
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "ShopTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>ShopTest</h2>
+<div class="T-Container">
+    <div class="T-box T-box1">
+        <h3>Categories</h3>
+        @foreach (var item in Model.categoryMdl)
+        {
+            <ul>
+                <li><a href="@Url.Action("ShopTest","Home",new { cid=item.c_id})">@item.c_name</a></li>
+            </ul>
+        }
+    </div>
+    <div class="T-box T-box2">
+        <h3>Subcategories</h3>
+
+
+        @foreach (var item in Model.subcatMdl)
+        {
+            <ul>
+                <li><a href="@Url.Action("ShopTest", "Home", new { cid = ViewBag.CategoryId, scId = item.sc_id })">@item.sc_name</a></li>
+            </ul>
+        }
+
+
+    </div>
+    <div class="T-box T-box3">
+        <h3>Proudcts</h3>
+       
+            @foreach (var item in Model.ProductDetails)
+            {
+            <ul>
+                @*<li><img src="@item.ProductImage" alt="ProductImage"/></li>*@
+                <li>@item.ProductName</li>
+                <li>@item.ProductPrice</li>
+            </ul>
+            }
+        
+
+        <div>
+            @Html.PagedListPager(Model.ProductDetails, page => Url.Action("ShopTest", new { page, cid = ViewBag.CategoryId, scId = ViewBag.SubcategoryId }))
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,231 @@
+﻿@model ProjectDP.Models.ShopProductModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- slider start -->
+<section class="display">
+    <div class="slider">
+        <div class="box">
+            <img src="~/images/slider/disp11.jpg" alt="">
+            <!-- <div class="boxtext"> -->
+            <h3>Shop with confidence knowing you're getting the best deals in town.</h3>
+            <!-- </div> -->
+        </div>
+        <div class="box">
+            <img src="~/images/slider/disp12.jpg" alt="">
+            <div class="boxtext">
+                <h3>Maximize your savings with our bundle deals and package discounts.</h3>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/images/slider/disp13.jpg" alt="">
+            <div class="boxtext">
+                <h3>Upgrade your shopping experience with our personalized concierge service.</h3>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/images/slider/disp14.jpg" alt="">
+            <div class="boxtext">
+                <h3>Experience luxury for less with our premium selection at unbeatable prices.</h3>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/images/slider/disp11.jpg" alt="">
+            <div class="boxtext">
+                <h3>Shop with confidence knowing you're getting the best deals in town.</h3>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Slider end -->
+<!-- Category Grid -->
+<section class="categories">
+
+
+    @foreach (var item in Model.categoryMdl)
+    {
+
+        <div class="cat">
+            <a href="@Url.Action("Shop","Home",new { cid=item.c_id})"><img src="@item.c_image" alt="image"></a>
+            <div class="cname">@item.c_name</div>
+        </div>
+            }
+
+               </section>
+
+<!-- Best Selling Products -->
+<section class="Products1">
+    <div class="PdtHead1">
+        <h3>Best Selling Products</h3>
+    </div>
+    <div class="PdtBody1">
+
+        @foreach (var item in ViewBag.ProductList)
+        {
+            <div class="product-item">
+                <div class="product-img">
+                    <img src="@item.pa_image" alt="@item.pa_name" />
+                </div>
+                <div class="product-details">
+                    <h5 class="product-name">@item.pa_name</h5>
+                    <div class="product-price">Price: ₹@item.pa_price/only-</div>
+                </div>
+                <a href="@Url.Action("Product_View", "Home", new { id = item.pa_id })" class="view-item-btn">View Item</a>
+            </div>
+        }
+
+        @*<div class="item1">
+                <div class="item_img1">
+                    <img src="~/images/product2.jpg" alt="" />
+                </div>
+                <div class="item_detail1">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>*@
+
+
+
+    </div>
+</section>
+<!-- Best selling products end -->
+<!-- Banners -->
+<section class="Banners">
+    <div class="ban1">
+        <img src="~/images/banner1.jpg" alt="">
+        <div class="ban1-txt">
+            Stock up & Save! Get more for less.
+        </div>
+    </div>
+    <div class="ban2">
+        <img src="~/images/banner2.jpg" alt="">
+        <div class="ban2-txt">
+            Everyday Essentials, Extraordinary Prices!
+        </div>
+    </div>
+</section>
+<!-- Banners End -->
+<!-- Featured products -->
+<section class="Products">
+    <div class="PdtHead">
+        <h3>Featured Products</h3>
+    </div>
+    <div class="PdtBody">
+
+
+
+        @foreach (var item in ViewBag.FeaturedProducts)
+        {
+            <div class="product-item">
+                <div class="product-img">
+                    <img src="@item.pa_image" alt="@item.pa_name" />
+                </div>
+                <div class="product-details">
+                    <h5 class="product-name">@item.pa_name</h5>
+                    <div class="product-price">Price: ₹@item.pa_price/only-</div>
+                </div>
+                <a href="@Url.Action("Product_View", "Home", new { id = item.pa_id })" class="view-item-btn">View Item</a>
+            </div>
+        }
+
+        @*<div class="item">
+                <div class="item_img">
+                    <img src="~/images/product.jpg" alt="">
+                </div>
+                <div class="item_detail">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_img">
+                    <img src="~/images/product2.jpg" alt="">
+                </div>
+                <div class="item_detail">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_img">
+                    <img src="~/images/product.jpg" alt="">
+                </div>
+                <div class="item_detail">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_img">
+                    <img src="~/images/product2.jpg" alt="">
+                </div>
+                <div class="item_detail">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_img">
+                    <img src="~/images/product.jpg" alt="">
+                </div>
+                <div class="item_detail">
+                    <h5>Product category</h5>
+                    <h4>Product name</h4>
+                    <div id="rating">Rating</div>
+                    <div id="price">Price</div>
+                </div>
+            </div>*@
+
+
+    </div>
+</section>
+<!-- Featured products end -->
+<!-- Big banner -->
+<section class="BigBanner">
+    <img src="~/images/bigbanner.jpg" alt="">
+    <div class="BB-txt">
+        dp_Mart
+    </div>
+    <div class="BB-txt2">
+
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+    <div class="ftbox">
+        <i class="fa-solid fa-truck"></i>
+        <h2>Free Delivery</h2>
+    </div>
+    <div class="ftbox">
+        <i class="fa-solid fa-rotate-left"></i>
+        <h2>Easy Return</h2>
+    </div>
+    <div class="ftbox">
+        <i class="fa-solid fa-money-check-dollar"></i>
+        <h2>Secure Payment</h2>
+    </div>
+    <div class="ftbox">
+        <i class="fa-solid fa-headset"></i>
+        <h2>24/7 Support</h2>
+    </div>
+    <div class="ftbox">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <h2>Best Prices</h2>
+    </div>
+</section>

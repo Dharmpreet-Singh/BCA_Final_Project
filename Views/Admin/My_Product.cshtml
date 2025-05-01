@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjectDP.Models.My_Product_Class>
+
+@{
+    ViewBag.Title = "My_Product";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="area">
+    <h2>Product</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Add_Product")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.p_catName)*@
+                Category
+            </th>
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.p_subCatName)*@
+                SubCategory
+            </th>
+            <th>
+                @*@Html.DisplayNkameFor(model => model.p_name)*@
+                Product Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.p_image)*@
+                Product Image
+            </th>
+
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>                         
+                <td>
+                    @Html.DisplayFor(modelItem => item.p_catName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.p_subCatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.p_name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.p_image)*@
+                    <img src="@item.p_image" alt="Alternate Text" width="100px"/>
+
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit_Product", new { id = item.p_id }) |
+                    @Html.ActionLink("Details", "Dtl_Product", new { id = item.p_id }) |
+                    @Html.ActionLink("Delete", "Del_Product", new { id=item.p_id  })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

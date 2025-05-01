@@ -1,0 +1,46 @@
+﻿@model ProjectDP.Models.Sub_Category
+
+@{
+    ViewBag.Title = "Del_Sub_Cat";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<div class="disp">
+    <h2>Del_Sub_Cat</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Sub_Category</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @*@Html.DisplayNameFor(model => model.sc_name)*@
+                Subcategory Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.sc_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.sc_img)*@
+                Subcategory Image
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.sc_img)*@
+                <img src="@Model.sc_img" alt=Alternate Text" width="100px" />
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="redirect">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Sub_Cat")
+            </div>
+        }
+    </div>
+</div>

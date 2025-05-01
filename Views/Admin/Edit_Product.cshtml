@@ -1,0 +1,73 @@
+﻿@model ProjectDP.Models.Product
+
+@{
+    ViewBag.Title = "Edit_Product";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="Create">
+    <h2>Edit Product</h2>
+
+
+    @using (Html.BeginForm("Edit_Product", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.p_id)
+
+            <div class="form-group">
+                <div class="form-label">Category :</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("ddlCategory", new SelectList(ViewBag.Category, "c_id", "c_name"), "-------Select Category-------", new { @class = "dropdownList" })
+                    @Html.ValidationMessageFor(model => model.catId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Subcategory :</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("ddlCategory2", new SelectList(ViewBag.Subcategory, "sc_id", "sc_name"), "-------Select SubCategory-------", new { @class = "dropdownList" })
+                    @Html.ValidationMessageFor(model => model.subCatId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Name :</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.p_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Image :</div>
+                <div class="col-md-10">
+                    <img src="@Model.p_img" height="100px" width="100px">
+                    <input class:"content" type="file" name="file" />
+                    @Html.ValidationMessageFor(model => model.p_img, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="redirect">
+        @Html.ActionLink("Back to List", "Product")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</div>

@@ -1,0 +1,66 @@
+﻿@model ProjectDP.Models.Contact
+
+@{
+    ViewBag.Title = "Feedback_Dtl";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="disp">
+    <h2>Feedback_Dtl</h2>
+
+    <div>
+        <h4>Contact</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @*@Html.DisplayNameFor(model => model.f_name)*@
+                First Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.f_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.l_name)*@
+                Last Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.l_name)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.email)*@
+                E-Mail
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.message)*@
+                Message
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.message)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.date)*@
+                Date
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.date)
+            </dd>
+
+        </dl>
+    </div>
+    <p class="redirect">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Feedback")
+    </p>
+</div>

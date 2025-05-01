@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "OrderConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="order-confirmation-message">
+    <h2>Order Confirmation</h2>
+    <p>Your order has been successfully placed. Thank you for shopping with us!</p>
+    <a href="@Url.Action("Shop", "Home")" class="back-to-shop">Continue Shopping</a>
+</div>
+
+<style>
+    .order-confirmation-message {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+        .order-confirmation-message h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .order-confirmation-message p {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+    .back-to-shop {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+        .back-to-shop:hover {
+            background-color: #45a049;
+        }
+</style>

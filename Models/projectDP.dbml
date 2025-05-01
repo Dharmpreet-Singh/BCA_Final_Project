@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="projectDP" Class="projectDPDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=projectDP;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="projectDPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="c_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="c_name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="c_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Category_Sub_Category" Member="Sub_Categories" ThisKey="c_id" OtherKey="catId" Type="Sub_Category" />
+      <Association Name="Category_Product" Member="Products" ThisKey="c_id" OtherKey="catId" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sub_Category" Member="Sub_Categories">
+    <Type Name="Sub_Category">
+      <Column Name="sc_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sc_name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="sc_img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="catId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Sub_Category_Product" Member="Products" ThisKey="sc_id" OtherKey="subCatId" Type="Product" />
+      <Association Name="Category_Sub_Category" Member="Category" ThisKey="catId" OtherKey="c_id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="f_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="l_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product_Dtl" Member="Product_Dtls">
+    <Type Name="Product_Dtl">
+      <Column Name="pd_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pd_price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="pd_description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="pd_quantity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="pd_discount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="pr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pr_offer" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Product_Product_Dtl" Member="Product" ThisKey="pr_id" OtherKey="p_id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Order_OrderDetail" Member="OrderDetails" ThisKey="OrderId" OtherKey="OrderId" Type="OrderDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetails" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="OrderDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Order_OrderDetail" Member="Order" ThisKey="OrderId" OtherKey="OrderId" Type="Order" IsForeignKey="true" />
+      <Association Name="Product_OrderDetail" Member="Product" ThisKey="ProductId" OtherKey="p_id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="p_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="p_img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="p_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="catId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subCatId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Product_Dtl" Member="Product_Dtls" ThisKey="p_id" OtherKey="pr_id" Type="Product_Dtl" />
+      <Association Name="Product_OrderDetail" Member="OrderDetails" ThisKey="p_id" OtherKey="ProductId" Type="OrderDetail" />
+      <Association Name="Category_Product" Member="Category" ThisKey="catId" OtherKey="c_id" Type="Category" IsForeignKey="true" />
+      <Association Name="Sub_Category_Product" Member="Sub_Category" ThisKey="subCatId" OtherKey="sc_id" Type="Sub_Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

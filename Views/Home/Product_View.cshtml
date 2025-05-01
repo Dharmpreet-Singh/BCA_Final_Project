@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Product View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="product-container">
+    @foreach (var item in ViewBag.ProductList)
+    {
+        <div class="dtlHead"></div>
+        <div class="dtlLeft">
+            <div class="dtlLeft_pic">
+                <img src="@item.pa_image" alt="@item.pa_name" />
+            </div>
+        </div>
+        <div class="dtlRight">
+            <div class="dtlText">
+                <div class="tx1">@item.pa_name</div>
+                <h3 class="tx2">Quantity: @item.pa_quantity</h3>
+                <h3 class="tx3">Price: ₹@item.pa_price</h3>
+                <h3 class="tx3">Discount: <s>₹@item.pa_disc</s></h3>
+                <h3>Categories: @item.pa_catName / @item.pa_subCatName</h3>
+
+                @using (Html.BeginForm())
+                {
+                    <h3>
+                        Set: <select name="dllquantity">
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </h3>
+                    <div class="PvBtn">
+                        <button class="PVcart" type="submit">Add to Cart</button>
+                        @*<a href="#"><button class="PVcart" type="button">Buy Now</button></a>*@
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="dtlBody">
+            <h2>@item.pa_descript</h2>
+        </div>
+    }
+</div>

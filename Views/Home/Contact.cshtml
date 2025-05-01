@@ -1,0 +1,106 @@
+﻿@model ProjectDP.Models.Contact
+@{
+    ViewBag.Title = "Contact";
+}
+@*<h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>*@
+
+<section class="banner">
+    <h1>Contact Us</h1>
+</section>
+
+<main class="contact-bdy">
+    <div class="user_form">
+        <div class="c_form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @*<div class="form-horizontal">*@
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="input_box">
+                    First Name
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.f_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.f_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="input_box">
+                    Last Name
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.l_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.l_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="input_box">
+                    E-mail
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="input_ text-Area-m-l ">
+                    Message
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.message, new { rows = "5", @class = "text-Area" })
+                        @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="none">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="f_submit" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+    @*<main class="contact-bdy">
+        <section class="user_form">
+            <form action="#" method="post">
+                <label for="firstname">First Name</label>
+                <input class="input1" type="text" id="firstname" name="firstname" placeholder="Type First Name">
+
+                <label for="lastname">Last Name</label>
+                <input class="input1" type="text" id="lastname" name="lastname" placeholder="Last Name">
+
+                <label for="e_mail">Your e-mail</label>
+                <input class="input1" type="email" id="e_mail" name="e_mail" placeholder="email address">
+
+                <label for="message">Your message</label>
+                <textarea name="message" id="message" cols="30" rows="5" placeholder="Type Your message"></textarea>
+
+                <input type="submit" value="submit">
+            </form>
+        </section>*@
+
+    <!-- map part -->
+    <section class="map">
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13998.686428371046!2d77.12768315541992!3d28.699468499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03d2ff74ba93%3A0xcdc118cbc371cc3f!2sND%20Block%20DDA%20Market!5e0!3m2!1sen!2sin!4v1716622389717!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13110.51987166751!2d75.92765252199666!3d31.12704272008911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a922907150df5%3A0x94de307293381efa!2sAmardeep%20Singh%20Shergill%20Memorial%20College%2C%20Mukandpur!5e0!3m2!1sen!2sin!4v1710183143249!5m2!1sen!2sin"
+                style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>*@
+        </div>
+    </section>
+</main>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

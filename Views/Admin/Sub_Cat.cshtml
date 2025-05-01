@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjectDP.Models.Sub_Cat_Class>
+
+@{
+    ViewBag.Title = "Sub_Cat";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="area">
+    <h2>Subcategory</h2>
+
+    <p>
+        @Html.ActionLink("Add SubCategory", "Add_SubCat")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.c_name)*@
+                Category Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.sc_name)*@
+                Subcategory Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.sc_img)*@
+                SubCat. Image
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.c_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sc_name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.sc_img)*@
+                    <img src="@item.sc_img" alt="Alternate Text" / width="100px">
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit_Subcat", new {  id=item.sc_id }) |
+                    @Html.ActionLink("Details", "Dtl_Sub_Cat", new { id = item.sc_id }) |
+                    @Html.ActionLink("Delete", "Del_Sub_Cat", new {  id=item.sc_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

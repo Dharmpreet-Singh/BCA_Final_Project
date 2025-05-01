@@ -1,0 +1,127 @@
+﻿@model ProjectDP.Models.ShopProductModel
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner">
+    <h1>Shop</h1>
+</section>
+
+<div class="catmenu">
+    @foreach (var item in Model.categoryMdl)
+    {
+        <ul>
+            <li><a href="@Url.Action("Shop","Home",new { cid=item.c_id})">@item.c_name</a></li>
+        </ul>
+    }
+</div>
+<div class="shopMid">
+    <!-- side menu -->
+    <aside class="sideMenu">
+        <div class="sideOffer">
+
+            <div class="subcategory-list">
+
+
+                @if (Model.subcatMdl != null && Model.subcatMdl.Any())
+
+                {
+                    <h3>Sub Categories</h3>
+                    <div class="subcategory-list">
+
+                        <ul>
+                            @foreach (var item in Model.subcatMdl)
+                            {
+                                <li><a href="@Url.Action("Shop", "Home", new { cid = ViewBag.CategoryId, scId = item.sc_id })">@item.sc_name</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="category-list">
+                        <h3>Categories</h3>
+                        <ul>
+                            @foreach (var item in Model.categoryMdl)
+                            {
+                                <li><a href="@Url.Action("Shop", "Home", new { cid = item.c_id })">@item.c_name</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+        <div class="sideOffer">
+            <img src="~/images/shop/side ban2.jpg" />
+        </div>
+
+
+
+        @*<div class="list1 ">
+                <h3>Category</h3>
+                <ul>
+                    @foreach (var ctg in ViewBag.Category)
+                    {
+                        <li><a href="#">@ctg.c_name</a></li>
+                    }
+                </ul>
+            </div>*@
+
+
+    </aside>
+
+    <!-- main menu -->
+    <main class="mainMenu">
+        <section class="Products2">
+            <div class="PdtHead2">
+                <h3>Featured Products</h3>
+            </div>
+            <div class="PdtBody2">
+
+                @foreach (var item in Model.ProductDetails)
+                {
+                    <div class="product-item">
+                        <div class="product-img">
+                            <a href="#">
+                                <img src="@item.ProductImage" alt="@item.ProductName" />
+                            </a>
+                        </div>
+                        <div class="product-details">
+                            <h5 class="product-name">@item.ProductName</h5>
+                            <div class="product-price">Price: ₹@Math.Round(Convert.ToDouble(item.ProductPrice), 2)\-</div>
+                            <a href="@Url.Action("Product_View", "Home", new { id = item.ProductId })" class="view-item-btn">View Item</a>
+                        </div>
+                    </div>
+                }
+
+
+                @*<div class="item2">
+                    <div class="item_img2">
+                        <img src="~/images/product2.jpg" alt="" />
+                    </div>
+                    <div class="item_detail2">
+                        <h5>Product category</h5>
+                        <h4>Product name</h4>
+                        <div id="rating">Rating</div>
+                        <div id="price">Price</div>
+                    </div>
+                </div>*@
+
+
+            </div>
+        </section>
+        <div class="pageBox">
+            <div class="pages">
+                @Html.PagedListPager(Model.ProductDetails, page => Url.Action("Shop", new { page, cid = ViewBag.CategoryId, scId = ViewBag.SubcategoryId }))
+            </div>
+        </div>
+    </main>
+    
+</div>
+

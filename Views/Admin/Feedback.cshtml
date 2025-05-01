@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjectDP.Models.Contact>
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Feedback</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@html.displaynamefor(model => model.f_name)*@
+            First Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.l_name)*@
+            Last Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.email)*@
+            E-mail
+        </th>
+        <th>
+            @*@html.displaynamefor(model => model.message)*@
+            message
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.date)*@
+            Date
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.l_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @{ 
+                var date = Convert.ToDateTime(item.date).ToString("dd MMM, yyyy");
+            }
+           @date
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
+            @Html.ActionLink("Details", "Feedback_Dtl", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Del_Feedback", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

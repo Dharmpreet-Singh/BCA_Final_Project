@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProjectDP.Models.CartViewModel>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Session["MyCartItem"] != null)
+{
+<div class="cart-box">
+    <h2>Your Cart</h2>
+    @foreach (var item in Model)
+    {
+        <div class="cart-item">
+            <div class="cart-item-details">
+                <div class="product-name">@item.myproducts.p_name</div>
+                <div class="quantity">Quantity: @item.Qty</div>
+                <div class="price">Price: @item.Price</div>
+                <div class="total">Total: @item.Total</div>
+            </div>
+            <div class="cart-item-actions">
+                @using (Html.BeginForm("RemoveFromCart", "Home", FormMethod.Post))
+                {
+                    @Html.Hidden("productId", item.myproducts.p_id)
+                    <button type="submit" class="btn-delete">Delete</button>
+                }
+            </div>
+        </div>
+    }
+    <div class="cart-subtotal">
+        <span>Subtotal: </span><span>@ViewBag.Subtotal</span>
+    </div>
+    <a href="PlaceOrder" class="view-item-btn">Buy Now</a>
+</div>
+}
+else
+{
+    <h3>Your Shopping Cart is empty</h3>
+    <a href="@Url.Action("Shop", "Home")">Go to Shop</a>
+}

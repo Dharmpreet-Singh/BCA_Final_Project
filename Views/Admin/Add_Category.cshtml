@@ -1,0 +1,52 @@
+﻿@model ProjectDP.Models.Category
+
+@{
+    ViewBag.Title = "Add_Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="Create">
+    <h2>Add Category</h2>
+
+
+    @using (Html.BeginForm("Add_Category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Category</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="form-label">Category Name:</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.c_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.c_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label">Category Image:</div>
+            <div class="col-md-10">
+                <input class:"content" type="file" name="file" />
+                @Html.ValidationMessageFor(model => model.c_image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="redirect">
+        @Html.ActionLink("Back to List", "Category")
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProjectDP.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Order Detail</h2>
+
+
+<table class="table">
+    <tr>
+      
+        <th>
+           Product
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+     
+        <td>
+           @item.Product.p_name
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        
+    </tr>
+}
+
+</table>

@@ -1,0 +1,77 @@
+﻿@model ProjectDP.Models.Product_Dtl
+
+@{
+    ViewBag.Title = "Add_Pdt_Dtl";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="Create">
+    <h2>Add Product Detail</h2>
+
+    @using (Html.BeginForm("Add_Pdt_Dtl", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()    
+
+        <div class="form-horizontal">
+            <h4>Product Detail</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="form-label">Product Name:</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("ddlProduct", new SelectList(ViewBag.Product, "p_id", "p_name"), "-------Select Product-------", new { @class = "dropdownList" })
+                    @Html.ValidationMessageFor(model => model.pr_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Price:</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pd_price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pd_price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Description:</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pd_description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pd_description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Quantity:</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pd_quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pd_quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">Product Discount:</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pd_discount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pd_discount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="redirect">
+        @Html.ActionLink("Back to List", "Product_Dtl")
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

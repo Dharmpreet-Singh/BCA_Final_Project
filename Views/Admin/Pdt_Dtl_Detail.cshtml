@@ -1,0 +1,68 @@
+﻿@model ProjectDP.Models.Product_Dtl
+
+@{
+    ViewBag.Title = "Pdt_Dtl_Detail";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Pdt_Dtl_Detail</h2>
+
+<div>
+    <h4>Product_Dtl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pr_id)*@
+            Product Name
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.pr_id)*@
+            @Model.Product.p_name
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pd_price)*@
+            Proudct Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pd_price)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pd_description)*@
+            Proudct Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pd_description)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pd_quantity)*@
+            Product Quantity
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pd_quantity)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.pd_discount)*@
+            Product Discount
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(model => model.pd_discount)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p class="redirect">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pd_id }) |
+    @Html.ActionLink("Back to List", "Product_Dtl")
+</p>

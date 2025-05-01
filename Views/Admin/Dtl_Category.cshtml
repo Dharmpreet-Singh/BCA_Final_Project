@@ -1,0 +1,36 @@
+﻿@model ProjectDP.Models.Category
+
+@{
+    ViewBag.Title = "Dtl_Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Dtl_Category</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.c_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_image)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.c_image)*@
+            <img src="@Model.c_image" alt="Alternate Text" / width="100px">
+        </dd>
+
+    </dl>
+</div>
+<p class="redirect">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.c_id }) |
+    @Html.ActionLink("Back to List", "Category")
+</p>

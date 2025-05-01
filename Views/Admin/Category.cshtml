@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProjectDP.Models.Category>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="area">
+    <h2>Category</h2>
+
+    <p>
+        @Html.ActionLink("Add Category", "Add_Category")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.c_name)*@
+                Category Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.c_image)*@
+                Category Image
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.c_name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.c_image)*@
+                    <img src="@item.c_image" alt="Alternate Text" / width="100px">
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit_Category", new { id = item.c_id }) |
+                    @Html.ActionLink("Details", "Dtl_Category", new { id = item.c_id }) |
+                    @Html.ActionLink("Delete", "Del_Category", new { id = item.c_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
